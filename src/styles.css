@@ -1,0 +1,7 @@
+/* Add application styles & imports to this file! */
+
+span.tag-name {
+  background: #dcf0ff;
+  padding: 2px 5px;
+  border-radius: 5px;
+}

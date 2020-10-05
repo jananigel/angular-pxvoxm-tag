@@ -1,0 +1,32 @@
+<div class="main">
+  <div class="typing-area">
+    <div
+      class="textarea"
+      #textarea
+      contenteditable="true"
+      spellcheck="true"
+      [attr.data-placeholder]="'Write a message...'"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (input)="onTextChange($event)"
+      (keydown)="onTextareaKeyDown($event)">
+    </div>
+    <button (click)="onSendClick()">Send</button>
+  </div>
+  <ul #userList class="user-list" *ngIf="isSearch" [hidden]="!(usersList | autoComplete:searchText:['firstName', 'lastName'])">
+    <li
+        (mouseover)="onUserListMouseover($event)"
+        (mousedown)="onUserListClick()"
+        [class.active]="i === 0"
+        [attr.data-index]="i"
+        [attr.data-id]="user.id"
+        *ngFor="let user of usersList | autoComplete:searchText:['firstName', 'lastName']; let i = index; trackBy: trackUserListId">
+        <span>{{ user.firstName }} {{ user.lastName }}</span>
+    </li>
+  </ul>
+</div>
+
+<!-- This is fake data -->
+<ul *ngIf="mockMsg">
+  <li [innerHTML]="mockMsg"></li>
+</ul>
